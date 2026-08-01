@@ -1,5 +1,8 @@
 # Remote Config Codegen
 
+[![pub version](https://img.shields.io/pub/v/remote_config_codegen.svg)](https://pub.dev/packages/remote_config_codegen)
+[![CI](https://github.com/keigomichi/remote_config_codegen_dart/actions/workflows/ci.yaml/badge.svg)](https://github.com/keigomichi/remote_config_codegen_dart/actions/workflows/ci.yaml)
+
 `remote_config_codegen` is a Dart CLI that generates a type-safe Firebase
 Remote Config access API and Dart JSON models from a JSON Manifest.
 It lets Flutter applications read Firebase Remote Config values through typed
