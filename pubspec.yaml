@@ -1,6 +1,6 @@
 name: remote_config_codegen
 description: Generate typed Dart Remote Config clients and JSON models from a JSON manifest.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/keigomichi/remote_config_codegen_dart
 environment:
   sdk: '>=3.11.0 <4.0.0'
