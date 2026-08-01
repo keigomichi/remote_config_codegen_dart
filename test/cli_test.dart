@@ -54,7 +54,7 @@ dart:
       },
     );
 
-    test('run generates files when valid paths are supplied', () async {
+    test('run succeeds when generated sources are unchanged', () async {
       final directory = await Directory.systemTemp.createTemp('rcc-cli-test-');
       addTearDown(() => directory.delete(recursive: true));
       final config = File('${directory.path}/config.json');
@@ -71,12 +71,13 @@ dart:
   output_directory: generated
 ''');
 
-      final exitCode = await RemoteConfigCodegenCli().run(<String>[
+      final arguments = <String>[
         '--config=${config.path}',
         '--settings=${settings.path}',
-      ]);
+      ];
 
-      expect(exitCode, 0);
+      expect(await RemoteConfigCodegenCli().run(arguments), 0);
+      expect(await RemoteConfigCodegenCli().run(arguments), 0);
       expect(
         await File(
           '${directory.path}/generated/remote_config_client.dart',
