@@ -46,5 +46,4 @@ jobs:
       - uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260 # v1.7.2
         with:
           sdk: stable
-      # Exact dependency constraints are intentional per the repository policy.
-      - run: dart pub publish --dry-run --ignore-warnings
+      - run: dart pub publish --dry-run
