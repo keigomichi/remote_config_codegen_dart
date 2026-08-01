@@ -18,6 +18,7 @@
 
 - [ ] I added or updated tests for behavior changes.
 - [ ] I updated the README for user-facing changes.
+- [ ] I left package versioning and released CHANGELOG sections to Release Please.
 - [ ] I confirmed that this PR does not include secrets or unexpected generated files.
 - [ ] I reviewed whether this change affects the minimum Dart SDK.
 
