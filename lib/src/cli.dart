@@ -85,12 +85,14 @@ class RemoteConfigCodegenCli {
         },
       );
 
-      final result = await Process.run(Platform.resolvedExecutable, <String>[
-        'format',
-        ...generatedFiles.map((File file) => file.path),
-      ]);
-      if (result.exitCode != 0) {
-        throw FileSystemException('dart format failed: ${result.stderr}');
+      if (generatedFiles.isNotEmpty) {
+        final result = await Process.run(Platform.resolvedExecutable, <String>[
+          'format',
+          ...generatedFiles.map((File file) => file.path),
+        ]);
+        if (result.exitCode != 0) {
+          throw FileSystemException('dart format failed: ${result.stderr}');
+        }
       }
     } on FileSystemException catch (error) {
       stderr.writeln(error.message);
