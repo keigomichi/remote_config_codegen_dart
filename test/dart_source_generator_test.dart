@@ -1,4 +1,4 @@
-import 'package:remote_config_codegen/remote_config_codegen_dart.dart';
+import 'package:remote_config_codegen/remote_config_codegen.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 

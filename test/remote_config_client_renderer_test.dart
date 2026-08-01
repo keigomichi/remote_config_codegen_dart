@@ -1,4 +1,4 @@
-import 'package:remote_config_codegen/remote_config_codegen_dart.dart';
+import 'package:remote_config_codegen/remote_config_codegen.dart';
 import 'package:remote_config_codegen/src/dart_model_registry.dart';
 import 'package:remote_config_codegen/src/dart_type_resolver.dart';
 import 'package:remote_config_codegen/src/remote_config_client_renderer.dart';

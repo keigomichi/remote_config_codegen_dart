@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:remote_config_codegen/src/dart_model_renderer.dart';
 import 'package:remote_config_codegen/src/dart_model_registry.dart';
 import 'package:remote_config_codegen/src/dart_type_resolver.dart';
-import 'package:remote_config_codegen/remote_config_codegen_dart.dart';
+import 'package:remote_config_codegen/remote_config_codegen.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
@@ -104,7 +104,7 @@ dart:
             ),
           );
           final expected = File(
-            'test/golden/${serializer.yamlValue}_models.dart',
+            'test/golden/${serializer.yamlValue}_models.golden',
           ).readAsStringSync();
 
           expect(sources.models.trimRight(), expected.trimRight());
