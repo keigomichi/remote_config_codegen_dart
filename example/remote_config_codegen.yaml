@@ -1,0 +1,4 @@
+dart:
+  output_directory: lib/generated/remote_config
+  serializer: freezed
+  remote_config_client_class_name: RemoteConfigClient

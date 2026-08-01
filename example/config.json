@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/remote_config_manifest.schema.json",
+  "parameters": {
+    "app_new_purchase_flow": {
+      "valueType": "BOOLEAN",
+      "defaultValue": false
+    },
+    "app_max_items": {
+      "valueType": "NUMBER",
+      "defaultValue": 3
+    },
+    "app_home_banner_config": {
+      "valueType": "JSON",
+      "defaultValue": {
+        "banners": [
+          { "title": "Generated from a JSON Schema", "background_color": "#6750A4" }
+        ]
+      },
+      "valueSchema": { "$ref": "#/$defs/HomeBannerConfig" }
+    }
+  },
+  "$defs": {
+    "HomeBannerConfig": {
+      "type": "object",
+      "required": ["banners"],
+      "properties": {
+        "banners": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title"],
+            "properties": {
+              "title": { "type": "string" },
+              "background_color": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

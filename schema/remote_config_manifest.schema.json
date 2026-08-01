@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://keigomichi.github.io/remote_config_codegen_dart/schema/remote_config_manifest.schema.json",
+  "title": "Remote Config Codegen Dart Manifest",
+  "description": "A manifest used to generate a typed Dart RemoteConfigClient.",
+  "type": "object",
+  "required": ["parameters"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "parameters": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/remoteConfigParameterDefinition"
+      }
+    },
+    "$defs": {
+      "type": "object",
+      "description": "Standard JSON Schema definitions referenced by JSON parameters.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "remoteConfigParameterDefinition": {
+      "type": "object",
+      "required": ["valueType", "defaultValue"],
+      "properties": {
+        "valueType": {
+          "type": "string",
+          "enum": ["STRING", "BOOLEAN", "NUMBER", "JSON"]
+        },
+        "defaultValue": {
+          "description": "The default value before serialization for the target Remote Config provider."
+        },
+        "valueSchema": {
+          "type": "object",
+          "required": ["$ref"],
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "pattern": "^#/$defs/[A-Za-z_][A-Za-z0-9_]*$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "valueType": { "const": "JSON" }
+            }
+          },
+          "then": {
+            "required": ["valueSchema"]
+          },
+          "else": {
+            "not": {
+              "required": ["valueSchema"]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
