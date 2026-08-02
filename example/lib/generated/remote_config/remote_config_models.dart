@@ -7,22 +7,21 @@ part 'remote_config_models.freezed.dart';
 part 'remote_config_models.g.dart';
 
 @freezed
-abstract class HomeBannerConfig with _$HomeBannerConfig {
-  const factory HomeBannerConfig({
-    required List<HomeBannerConfigBannersItem> banners,
-  }) = _HomeBannerConfig;
+abstract class MenuConfig with _$MenuConfig {
+  const factory MenuConfig({required List<MenuConfigItemsItem> items}) =
+      _MenuConfig;
 
-  factory HomeBannerConfig.fromJson(Map<String, dynamic> json) =>
-      _$HomeBannerConfigFromJson(json);
+  factory MenuConfig.fromJson(Map<String, dynamic> json) =>
+      _$MenuConfigFromJson(json);
 }
 
 @freezed
-abstract class HomeBannerConfigBannersItem with _$HomeBannerConfigBannersItem {
-  const factory HomeBannerConfigBannersItem({
-    required String title,
+abstract class MenuConfigItemsItem with _$MenuConfigItemsItem {
+  const factory MenuConfigItemsItem({
+    required String name,
     @JsonKey(name: 'background_color') String? backgroundColor,
-  }) = _HomeBannerConfigBannersItem;
+  }) = _MenuConfigItemsItem;
 
-  factory HomeBannerConfigBannersItem.fromJson(Map<String, dynamic> json) =>
-      _$HomeBannerConfigBannersItemFromJson(json);
+  factory MenuConfigItemsItem.fromJson(Map<String, dynamic> json) =>
+      _$MenuConfigItemsItemFromJson(json);
 }

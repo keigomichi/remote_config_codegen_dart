@@ -1,36 +1,42 @@
 {
   "$schema": "../schema/remote_config_manifest.schema.json",
   "parameters": {
-    "app_new_purchase_flow": {
-      "valueType": "BOOLEAN",
-      "defaultValue": false
-    },
-    "app_max_items": {
+    "example_param_1": {
       "valueType": "NUMBER",
-      "defaultValue": 3
+      "defaultValue": 42
     },
-    "app_home_banner_config": {
+    "example_param_2": {
       "valueType": "JSON",
       "defaultValue": {
-        "banners": [
-          { "title": "Generated from a JSON Schema", "background_color": "#6750A4" }
+        "items": [
+          { "name": "coffee", "background_color": "#6750A4" }
         ]
       },
-      "valueSchema": { "$ref": "#/$defs/HomeBannerConfig" }
+      "valueSchema": { "$ref": "#/$defs/MenuConfig" }
+    }
+  },
+  "parameterGroups": {
+    "example_group": {
+      "parameters": {
+        "example_param_3": {
+          "valueType": "BOOLEAN",
+          "defaultValue": true
+        }
+      }
     }
   },
   "$defs": {
-    "HomeBannerConfig": {
+    "MenuConfig": {
       "type": "object",
-      "required": ["banners"],
+      "required": ["items"],
       "properties": {
-        "banners": {
+        "items": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["title"],
+            "required": ["name"],
             "properties": {
-              "title": { "type": "string" },
+              "name": { "type": "string" },
               "background_color": { "type": "string" }
             }
           }

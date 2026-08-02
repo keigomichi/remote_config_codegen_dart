@@ -24,9 +24,14 @@ class RemoteConfigClientRenderer {
     DartCodegenSettings settings,
     DartTypeResolver resolver,
   ) {
-    final hasJsonParameter = manifest.parameters.values.any(
-      (parameter) => parameter.valueType == 'JSON',
-    );
+    _validateMethodNames(manifest);
+
+    final hasJsonParameter = <RemoteConfigParameterDefinition>[
+      ...manifest.parameters.values,
+      ...manifest.parameterGroups.values.expand(
+        (group) => group.parameters.values,
+      ),
+    ].any((parameter) => parameter.valueType == 'JSON');
     final buffer = StringBuffer(generatedCodeHeader)
       ..writeln(
         "import 'package:firebase_remote_config/firebase_remote_config.dart';",
@@ -59,8 +64,88 @@ class RemoteConfigClientRenderer {
         resolver,
       );
     }
+
+    final groups = manifest.parameterGroups.values.toList()
+      ..sort((a, b) => a.name.compareTo(b.name));
+    for (final group in groups) {
+      _renderParameterGroup(buffer, group, manifest, resolver);
+    }
+
     buffer.writeln('}');
     return buffer.toString();
+  }
+
+  void _renderParameterGroup(
+    StringBuffer buffer,
+    RemoteConfigParameterGroupDefinition group,
+    Manifest manifest,
+    DartTypeResolver resolver,
+  ) {
+    final description = group.description;
+    if (description != null) {
+      for (final line in description.split('\n')) {
+        final normalizedLine = line.endsWith('\r')
+            ? line.substring(0, line.length - 1)
+            : line;
+        buffer.writeln(
+          normalizedLine.isEmpty ? '  ///' : '  /// $normalizedLine',
+        );
+      }
+    }
+
+    final groupName = DartNames.type(group.name);
+    final parameters = group.parameters.values.toList()
+      ..sort((a, b) => a.key.compareTo(b.key));
+    for (final parameter in parameters) {
+      _renderParameterMethods(
+        buffer,
+        parameter,
+        groupName + DartNames.type(parameter.key),
+        "'${DartLiteral.string(parameter.key)}'",
+        manifest,
+        resolver,
+      );
+    }
+  }
+
+  void _validateMethodNames(Manifest manifest) {
+    final candidates = [
+      for (final parameter in manifest.parameters.values)
+        (
+          parameter: parameter,
+          baseName: DartNames.type(parameter.key),
+          owner: parameter.key,
+        ),
+      for (final group in manifest.parameterGroups.values)
+        for (final parameter in group.parameters.values)
+          (
+            parameter: parameter,
+            baseName:
+                DartNames.type(group.name) + DartNames.type(parameter.key),
+            owner: '${group.name}.${parameter.key}',
+          ),
+    ];
+
+    final methodOwners = <String, String>{};
+    for (final candidate in candidates) {
+      final methodNames = switch (candidate.parameter.valueType) {
+        'NUMBER' => <String>[
+          'get${candidate.baseName}Int',
+          'get${candidate.baseName}Double',
+        ],
+        _ => <String>['get${candidate.baseName}'],
+      };
+      for (final methodName in methodNames) {
+        final previousOwner = methodOwners[methodName];
+        if (previousOwner != null) {
+          throw FormatException(
+            'Generated method $methodName conflicts between '
+            '$previousOwner and ${candidate.owner}.',
+          );
+        }
+        methodOwners[methodName] = candidate.owner;
+      }
+    }
   }
 
   void _renderParameterMethods(

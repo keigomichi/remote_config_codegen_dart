@@ -13,42 +13,42 @@ part of 'remote_config_models.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$HomeBannerConfig {
+mixin _$MenuConfig {
 
- List<HomeBannerConfigBannersItem> get banners;
-/// Create a copy of HomeBannerConfig
+ List<MenuConfigItemsItem> get items;
+/// Create a copy of MenuConfig
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$HomeBannerConfigCopyWith<HomeBannerConfig> get copyWith => _$HomeBannerConfigCopyWithImpl<HomeBannerConfig>(this as HomeBannerConfig, _$identity);
+$MenuConfigCopyWith<MenuConfig> get copyWith => _$MenuConfigCopyWithImpl<MenuConfig>(this as MenuConfig, _$identity);
 
-  /// Serializes this HomeBannerConfig to a JSON map.
+  /// Serializes this MenuConfig to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeBannerConfig&&const DeepCollectionEquality().equals(other.banners, banners));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MenuConfig&&const DeepCollectionEquality().equals(other.items, items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(banners));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items));
 
 @override
 String toString() {
-  return 'HomeBannerConfig(banners: $banners)';
+  return 'MenuConfig(items: $items)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $HomeBannerConfigCopyWith<$Res>  {
-  factory $HomeBannerConfigCopyWith(HomeBannerConfig value, $Res Function(HomeBannerConfig) _then) = _$HomeBannerConfigCopyWithImpl;
+abstract mixin class $MenuConfigCopyWith<$Res>  {
+  factory $MenuConfigCopyWith(MenuConfig value, $Res Function(MenuConfig) _then) = _$MenuConfigCopyWithImpl;
 @useResult
 $Res call({
- List<HomeBannerConfigBannersItem> banners
+ List<MenuConfigItemsItem> items
 });
 
 
@@ -56,27 +56,27 @@ $Res call({
 
 }
 /// @nodoc
-class _$HomeBannerConfigCopyWithImpl<$Res>
-    implements $HomeBannerConfigCopyWith<$Res> {
-  _$HomeBannerConfigCopyWithImpl(this._self, this._then);
+class _$MenuConfigCopyWithImpl<$Res>
+    implements $MenuConfigCopyWith<$Res> {
+  _$MenuConfigCopyWithImpl(this._self, this._then);
 
-  final HomeBannerConfig _self;
-  final $Res Function(HomeBannerConfig) _then;
+  final MenuConfig _self;
+  final $Res Function(MenuConfig) _then;
 
-/// Create a copy of HomeBannerConfig
+/// Create a copy of MenuConfig
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? banners = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,}) {
   return _then(_self.copyWith(
-banners: null == banners ? _self.banners : banners // ignore: cast_nullable_to_non_nullable
-as List<HomeBannerConfigBannersItem>,
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<MenuConfigItemsItem>,
   ));
 }
 
 }
 
 
-/// Adds pattern-matching-related methods to [HomeBannerConfig].
-extension HomeBannerConfigPatterns on HomeBannerConfig {
+/// Adds pattern-matching-related methods to [MenuConfig].
+extension MenuConfigPatterns on MenuConfig {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -89,10 +89,10 @@ extension HomeBannerConfigPatterns on HomeBannerConfig {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HomeBannerConfig value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MenuConfig value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _HomeBannerConfig() when $default != null:
+case _MenuConfig() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -111,10 +111,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HomeBannerConfig value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MenuConfig value)  $default,){
 final _that = this;
 switch (_that) {
-case _HomeBannerConfig():
+case _MenuConfig():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -132,10 +132,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HomeBannerConfig value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MenuConfig value)?  $default,){
 final _that = this;
 switch (_that) {
-case _HomeBannerConfig() when $default != null:
+case _MenuConfig() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -153,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<HomeBannerConfigBannersItem> banners)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MenuConfigItemsItem> items)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _HomeBannerConfig() when $default != null:
-return $default(_that.banners);case _:
+case _MenuConfig() when $default != null:
+return $default(_that.items);case _:
   return orElse();
 
 }
@@ -174,10 +174,10 @@ return $default(_that.banners);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<HomeBannerConfigBannersItem> banners)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MenuConfigItemsItem> items)  $default,) {final _that = this;
 switch (_that) {
-case _HomeBannerConfig():
-return $default(_that.banners);case _:
+case _MenuConfig():
+return $default(_that.items);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +194,10 @@ return $default(_that.banners);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<HomeBannerConfigBannersItem> banners)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MenuConfigItemsItem> items)?  $default,) {final _that = this;
 switch (_that) {
-case _HomeBannerConfig() when $default != null:
-return $default(_that.banners);case _:
+case _MenuConfig() when $default != null:
+return $default(_that.items);case _:
   return null;
 
 }
@@ -208,52 +208,52 @@ return $default(_that.banners);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _HomeBannerConfig implements HomeBannerConfig {
-  const _HomeBannerConfig({required final  List<HomeBannerConfigBannersItem> banners}): _banners = banners;
-  factory _HomeBannerConfig.fromJson(Map<String, dynamic> json) => _$HomeBannerConfigFromJson(json);
+class _MenuConfig implements MenuConfig {
+  const _MenuConfig({required final  List<MenuConfigItemsItem> items}): _items = items;
+  factory _MenuConfig.fromJson(Map<String, dynamic> json) => _$MenuConfigFromJson(json);
 
- final  List<HomeBannerConfigBannersItem> _banners;
-@override List<HomeBannerConfigBannersItem> get banners {
-  if (_banners is EqualUnmodifiableListView) return _banners;
+ final  List<MenuConfigItemsItem> _items;
+@override List<MenuConfigItemsItem> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_banners);
+  return EqualUnmodifiableListView(_items);
 }
 
 
-/// Create a copy of HomeBannerConfig
+/// Create a copy of MenuConfig
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$HomeBannerConfigCopyWith<_HomeBannerConfig> get copyWith => __$HomeBannerConfigCopyWithImpl<_HomeBannerConfig>(this, _$identity);
+_$MenuConfigCopyWith<_MenuConfig> get copyWith => __$MenuConfigCopyWithImpl<_MenuConfig>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$HomeBannerConfigToJson(this, );
+  return _$MenuConfigToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeBannerConfig&&const DeepCollectionEquality().equals(other._banners, _banners));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MenuConfig&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_banners));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'HomeBannerConfig(banners: $banners)';
+  return 'MenuConfig(items: $items)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$HomeBannerConfigCopyWith<$Res> implements $HomeBannerConfigCopyWith<$Res> {
-  factory _$HomeBannerConfigCopyWith(_HomeBannerConfig value, $Res Function(_HomeBannerConfig) _then) = __$HomeBannerConfigCopyWithImpl;
+abstract mixin class _$MenuConfigCopyWith<$Res> implements $MenuConfigCopyWith<$Res> {
+  factory _$MenuConfigCopyWith(_MenuConfig value, $Res Function(_MenuConfig) _then) = __$MenuConfigCopyWithImpl;
 @override @useResult
 $Res call({
- List<HomeBannerConfigBannersItem> banners
+ List<MenuConfigItemsItem> items
 });
 
 
@@ -261,19 +261,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$HomeBannerConfigCopyWithImpl<$Res>
-    implements _$HomeBannerConfigCopyWith<$Res> {
-  __$HomeBannerConfigCopyWithImpl(this._self, this._then);
+class __$MenuConfigCopyWithImpl<$Res>
+    implements _$MenuConfigCopyWith<$Res> {
+  __$MenuConfigCopyWithImpl(this._self, this._then);
 
-  final _HomeBannerConfig _self;
-  final $Res Function(_HomeBannerConfig) _then;
+  final _MenuConfig _self;
+  final $Res Function(_MenuConfig) _then;
 
-/// Create a copy of HomeBannerConfig
+/// Create a copy of MenuConfig
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? banners = null,}) {
-  return _then(_HomeBannerConfig(
-banners: null == banners ? _self._banners : banners // ignore: cast_nullable_to_non_nullable
-as List<HomeBannerConfigBannersItem>,
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
+  return _then(_MenuConfig(
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<MenuConfigItemsItem>,
   ));
 }
 
@@ -282,42 +282,42 @@ as List<HomeBannerConfigBannersItem>,
 
 
 /// @nodoc
-mixin _$HomeBannerConfigBannersItem {
+mixin _$MenuConfigItemsItem {
 
- String get title;@JsonKey(name: 'background_color') String? get backgroundColor;
-/// Create a copy of HomeBannerConfigBannersItem
+ String get name;@JsonKey(name: 'background_color') String? get backgroundColor;
+/// Create a copy of MenuConfigItemsItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$HomeBannerConfigBannersItemCopyWith<HomeBannerConfigBannersItem> get copyWith => _$HomeBannerConfigBannersItemCopyWithImpl<HomeBannerConfigBannersItem>(this as HomeBannerConfigBannersItem, _$identity);
+$MenuConfigItemsItemCopyWith<MenuConfigItemsItem> get copyWith => _$MenuConfigItemsItemCopyWithImpl<MenuConfigItemsItem>(this as MenuConfigItemsItem, _$identity);
 
-  /// Serializes this HomeBannerConfigBannersItem to a JSON map.
+  /// Serializes this MenuConfigItemsItem to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeBannerConfigBannersItem&&(identical(other.title, title) || other.title == title)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MenuConfigItemsItem&&(identical(other.name, name) || other.name == name)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,backgroundColor);
+int get hashCode => Object.hash(runtimeType,name,backgroundColor);
 
 @override
 String toString() {
-  return 'HomeBannerConfigBannersItem(title: $title, backgroundColor: $backgroundColor)';
+  return 'MenuConfigItemsItem(name: $name, backgroundColor: $backgroundColor)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $HomeBannerConfigBannersItemCopyWith<$Res>  {
-  factory $HomeBannerConfigBannersItemCopyWith(HomeBannerConfigBannersItem value, $Res Function(HomeBannerConfigBannersItem) _then) = _$HomeBannerConfigBannersItemCopyWithImpl;
+abstract mixin class $MenuConfigItemsItemCopyWith<$Res>  {
+  factory $MenuConfigItemsItemCopyWith(MenuConfigItemsItem value, $Res Function(MenuConfigItemsItem) _then) = _$MenuConfigItemsItemCopyWithImpl;
 @useResult
 $Res call({
- String title,@JsonKey(name: 'background_color') String? backgroundColor
+ String name,@JsonKey(name: 'background_color') String? backgroundColor
 });
 
 
@@ -325,18 +325,18 @@ $Res call({
 
 }
 /// @nodoc
-class _$HomeBannerConfigBannersItemCopyWithImpl<$Res>
-    implements $HomeBannerConfigBannersItemCopyWith<$Res> {
-  _$HomeBannerConfigBannersItemCopyWithImpl(this._self, this._then);
+class _$MenuConfigItemsItemCopyWithImpl<$Res>
+    implements $MenuConfigItemsItemCopyWith<$Res> {
+  _$MenuConfigItemsItemCopyWithImpl(this._self, this._then);
 
-  final HomeBannerConfigBannersItem _self;
-  final $Res Function(HomeBannerConfigBannersItem) _then;
+  final MenuConfigItemsItem _self;
+  final $Res Function(MenuConfigItemsItem) _then;
 
-/// Create a copy of HomeBannerConfigBannersItem
+/// Create a copy of MenuConfigItemsItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? backgroundColor = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? backgroundColor = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,backgroundColor: freezed == backgroundColor ? _self.backgroundColor : backgroundColor // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -345,8 +345,8 @@ as String?,
 }
 
 
-/// Adds pattern-matching-related methods to [HomeBannerConfigBannersItem].
-extension HomeBannerConfigBannersItemPatterns on HomeBannerConfigBannersItem {
+/// Adds pattern-matching-related methods to [MenuConfigItemsItem].
+extension MenuConfigItemsItemPatterns on MenuConfigItemsItem {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -359,10 +359,10 @@ extension HomeBannerConfigBannersItemPatterns on HomeBannerConfigBannersItem {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HomeBannerConfigBannersItem value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MenuConfigItemsItem value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _HomeBannerConfigBannersItem() when $default != null:
+case _MenuConfigItemsItem() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -381,10 +381,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HomeBannerConfigBannersItem value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MenuConfigItemsItem value)  $default,){
 final _that = this;
 switch (_that) {
-case _HomeBannerConfigBannersItem():
+case _MenuConfigItemsItem():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -402,10 +402,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HomeBannerConfigBannersItem value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MenuConfigItemsItem value)?  $default,){
 final _that = this;
 switch (_that) {
-case _HomeBannerConfigBannersItem() when $default != null:
+case _MenuConfigItemsItem() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -423,10 +423,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title, @JsonKey(name: 'background_color')  String? backgroundColor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @JsonKey(name: 'background_color')  String? backgroundColor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _HomeBannerConfigBannersItem() when $default != null:
-return $default(_that.title,_that.backgroundColor);case _:
+case _MenuConfigItemsItem() when $default != null:
+return $default(_that.name,_that.backgroundColor);case _:
   return orElse();
 
 }
@@ -444,10 +444,10 @@ return $default(_that.title,_that.backgroundColor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title, @JsonKey(name: 'background_color')  String? backgroundColor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @JsonKey(name: 'background_color')  String? backgroundColor)  $default,) {final _that = this;
 switch (_that) {
-case _HomeBannerConfigBannersItem():
-return $default(_that.title,_that.backgroundColor);case _:
+case _MenuConfigItemsItem():
+return $default(_that.name,_that.backgroundColor);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -464,10 +464,10 @@ return $default(_that.title,_that.backgroundColor);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title, @JsonKey(name: 'background_color')  String? backgroundColor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @JsonKey(name: 'background_color')  String? backgroundColor)?  $default,) {final _that = this;
 switch (_that) {
-case _HomeBannerConfigBannersItem() when $default != null:
-return $default(_that.title,_that.backgroundColor);case _:
+case _MenuConfigItemsItem() when $default != null:
+return $default(_that.name,_that.backgroundColor);case _:
   return null;
 
 }
@@ -478,47 +478,47 @@ return $default(_that.title,_that.backgroundColor);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _HomeBannerConfigBannersItem implements HomeBannerConfigBannersItem {
-  const _HomeBannerConfigBannersItem({required this.title, @JsonKey(name: 'background_color') this.backgroundColor});
-  factory _HomeBannerConfigBannersItem.fromJson(Map<String, dynamic> json) => _$HomeBannerConfigBannersItemFromJson(json);
+class _MenuConfigItemsItem implements MenuConfigItemsItem {
+  const _MenuConfigItemsItem({required this.name, @JsonKey(name: 'background_color') this.backgroundColor});
+  factory _MenuConfigItemsItem.fromJson(Map<String, dynamic> json) => _$MenuConfigItemsItemFromJson(json);
 
-@override final  String title;
+@override final  String name;
 @override@JsonKey(name: 'background_color') final  String? backgroundColor;
 
-/// Create a copy of HomeBannerConfigBannersItem
+/// Create a copy of MenuConfigItemsItem
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$HomeBannerConfigBannersItemCopyWith<_HomeBannerConfigBannersItem> get copyWith => __$HomeBannerConfigBannersItemCopyWithImpl<_HomeBannerConfigBannersItem>(this, _$identity);
+_$MenuConfigItemsItemCopyWith<_MenuConfigItemsItem> get copyWith => __$MenuConfigItemsItemCopyWithImpl<_MenuConfigItemsItem>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$HomeBannerConfigBannersItemToJson(this, );
+  return _$MenuConfigItemsItemToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeBannerConfigBannersItem&&(identical(other.title, title) || other.title == title)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MenuConfigItemsItem&&(identical(other.name, name) || other.name == name)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,backgroundColor);
+int get hashCode => Object.hash(runtimeType,name,backgroundColor);
 
 @override
 String toString() {
-  return 'HomeBannerConfigBannersItem(title: $title, backgroundColor: $backgroundColor)';
+  return 'MenuConfigItemsItem(name: $name, backgroundColor: $backgroundColor)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$HomeBannerConfigBannersItemCopyWith<$Res> implements $HomeBannerConfigBannersItemCopyWith<$Res> {
-  factory _$HomeBannerConfigBannersItemCopyWith(_HomeBannerConfigBannersItem value, $Res Function(_HomeBannerConfigBannersItem) _then) = __$HomeBannerConfigBannersItemCopyWithImpl;
+abstract mixin class _$MenuConfigItemsItemCopyWith<$Res> implements $MenuConfigItemsItemCopyWith<$Res> {
+  factory _$MenuConfigItemsItemCopyWith(_MenuConfigItemsItem value, $Res Function(_MenuConfigItemsItem) _then) = __$MenuConfigItemsItemCopyWithImpl;
 @override @useResult
 $Res call({
- String title,@JsonKey(name: 'background_color') String? backgroundColor
+ String name,@JsonKey(name: 'background_color') String? backgroundColor
 });
 
 
@@ -526,18 +526,18 @@ $Res call({
 
 }
 /// @nodoc
-class __$HomeBannerConfigBannersItemCopyWithImpl<$Res>
-    implements _$HomeBannerConfigBannersItemCopyWith<$Res> {
-  __$HomeBannerConfigBannersItemCopyWithImpl(this._self, this._then);
+class __$MenuConfigItemsItemCopyWithImpl<$Res>
+    implements _$MenuConfigItemsItemCopyWith<$Res> {
+  __$MenuConfigItemsItemCopyWithImpl(this._self, this._then);
 
-  final _HomeBannerConfigBannersItem _self;
-  final $Res Function(_HomeBannerConfigBannersItem) _then;
+  final _MenuConfigItemsItem _self;
+  final $Res Function(_MenuConfigItemsItem) _then;
 
-/// Create a copy of HomeBannerConfigBannersItem
+/// Create a copy of MenuConfigItemsItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? backgroundColor = freezed,}) {
-  return _then(_HomeBannerConfigBannersItem(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? backgroundColor = freezed,}) {
+  return _then(_MenuConfigItemsItem(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,backgroundColor: freezed == backgroundColor ? _self.backgroundColor : backgroundColor // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
