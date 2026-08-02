@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/keigomichi/remote_config_codegen_dart/compare/v0.1.1...v0.2.0) (2026-08-02)
+
+
+### Features
+
+* add support for parameter groups ([#6](https://github.com/keigomichi/remote_config_codegen_dart/issues/6)) ([4c24528](https://github.com/keigomichi/remote_config_codegen_dart/commit/4c245280a912e10123c42b01291dca2980bbf295))
+
 ## [0.1.1](https://github.com/keigomichi/remote_config_codegen_dart/compare/v0.1.0...v0.1.1) (2026-08-01)
 
 
