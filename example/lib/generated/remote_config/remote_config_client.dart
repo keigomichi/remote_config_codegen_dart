@@ -11,30 +11,27 @@ class RemoteConfigClient {
 
   final FirebaseRemoteConfig _remoteConfig;
 
-  HomeBannerConfig getAppHomeBannerConfig() {
+  int getExampleParam1Int() => _remoteConfig.getInt('example_param_1');
+  double getExampleParam1Double() => _remoteConfig.getDouble('example_param_1');
+
+  MenuConfig getExampleParam2() {
     try {
       final Object? decoded = jsonDecode(
-        _remoteConfig.getString('app_home_banner_config'),
+        _remoteConfig.getString('example_param_2'),
       );
       if (decoded is! Map<String, dynamic>) {
         throw const FormatException('Expected a JSON object.');
       }
-      return HomeBannerConfig.fromJson(decoded);
+      return MenuConfig.fromJson(decoded);
     } on Object {
-      return HomeBannerConfig.fromJson(<String, dynamic>{
-        'banners': <dynamic>[
-          <String, dynamic>{
-            'title': 'Generated from a JSON Schema',
-            'background_color': '#6750A4',
-          },
+      return MenuConfig.fromJson(<String, dynamic>{
+        'items': <dynamic>[
+          <String, dynamic>{'name': 'coffee', 'background_color': '#6750A4'},
         ],
       });
     }
   }
 
-  int getAppMaxItemsInt() => _remoteConfig.getInt('app_max_items');
-  double getAppMaxItemsDouble() => _remoteConfig.getDouble('app_max_items');
-
-  bool getAppNewPurchaseFlow() =>
-      _remoteConfig.getBool('app_new_purchase_flow');
+  bool getExampleGroupExampleParam3() =>
+      _remoteConfig.getBool('example_param_3');
 }

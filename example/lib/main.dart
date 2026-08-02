@@ -10,11 +10,11 @@ Future<void> main() async {
 
   final remoteConfig = FirebaseRemoteConfig.instance;
   await remoteConfig.setDefaults(const <String, Object>{
-    'app_new_purchase_flow': false,
-    'app_max_items': 3,
-    'app_home_banner_config':
-        '{"banners":[{"title":"Generated from a JSON Schema",'
+    'example_param_1': 42,
+    'example_param_2':
+        '{"items":[{"name":"coffee",'
         '"background_color":"#6750A4"}]}',
+    'example_param_3': true,
   });
   await remoteConfig.fetchAndActivate();
 
@@ -48,7 +48,7 @@ class RemoteConfigExamplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bannerConfig = client.getAppHomeBannerConfig();
+    final exampleParam2 = client.getExampleParam2();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Remote Config Codegen Example')),
@@ -61,15 +61,15 @@ class RemoteConfigExamplePage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ListTile(
-            title: const Text('app_new_purchase_flow'),
-            subtitle: Text('${client.getAppNewPurchaseFlow()}'),
+            title: const Text('example_param_1'),
+            subtitle: Text(
+              'int: ${client.getExampleParam1Int()} / '
+              'double: ${client.getExampleParam1Double()}',
+            ),
           ),
           ListTile(
-            title: const Text('app_max_items'),
-            subtitle: Text(
-              'int: ${client.getAppMaxItemsInt()} / '
-              'double: ${client.getAppMaxItemsDouble()}',
-            ),
+            title: const Text('example_param_3 (example_group)'),
+            subtitle: Text('${client.getExampleGroupExampleParam3()}'),
           ),
           const SizedBox(height: 16),
           Text(
@@ -77,14 +77,14 @@ class RemoteConfigExamplePage extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 8),
-          for (final banner in bannerConfig.banners)
+          for (final item in exampleParam2.items)
             Card(
               color:
-                  _colorFromHex(banner.backgroundColor) ??
+                  _colorFromHex(item.backgroundColor) ??
                   Theme.of(context).colorScheme.secondaryContainer,
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: Text(banner.title),
+                child: Text(item.name),
               ),
             ),
         ],

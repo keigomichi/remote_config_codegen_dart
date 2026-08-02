@@ -17,22 +17,46 @@ Manifest:
 ```json
 {
   "parameters": {
-    "app_new_purchase_flow": {
-      "valueType": "BOOLEAN",
-      "defaultValue": false
+    "example_param_1": {
+      "valueType": "NUMBER",
+      "defaultValue": 42
     },
-    "app_home_banner_config": {
+    "example_param_2": {
       "valueType": "JSON",
-      "defaultValue": { "banners": [] },
-      "valueSchema": { "$ref": "#/$defs/HomeBannerConfig" }
+      "defaultValue": {
+        "items": [
+          { "name": "coffee", "background_color": "#6750A4" }
+        ]
+      },
+      "valueSchema": { "$ref": "#/$defs/MenuConfig" }
+    }
+  },
+  "parameterGroups": {
+    "example_group": {
+      "parameters": {
+        "example_param_3": {
+          "valueType": "BOOLEAN",
+          "defaultValue": true
+        }
+      }
     }
   },
   "$defs": {
-    "HomeBannerConfig": {
+    "MenuConfig": {
       "type": "object",
-      "required": ["banners"],
+      "required": ["items"],
       "properties": {
-        "banners": { "type": "array", "items": { "type": "string" } }
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "background_color": { "type": "string" }
+            }
+          }
+        }
       }
     }
   }
@@ -45,15 +69,30 @@ The CLI then generates a Firebase-backed, typed API. With the default
 ```dart
 // remote_config_models.dart
 @JsonSerializable()
-class HomeBannerConfig {
-  const HomeBannerConfig({required this.banners});
+class MenuConfig {
+  const MenuConfig({required this.items});
 
-  factory HomeBannerConfig.fromJson(Map<String, dynamic> json) =>
-      _$HomeBannerConfigFromJson(json);
+  factory MenuConfig.fromJson(Map<String, dynamic> json) =>
+      _$MenuConfigFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HomeBannerConfigToJson(this);
+  Map<String, dynamic> toJson() => _$MenuConfigToJson(this);
 
-  final List<String> banners;
+  final List<MenuConfigItemsItem> items;
+}
+
+@JsonSerializable()
+class MenuConfigItemsItem {
+  const MenuConfigItemsItem({required this.name, this.backgroundColor});
+
+  factory MenuConfigItemsItem.fromJson(Map<String, dynamic> json) =>
+      _$MenuConfigItemsItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MenuConfigItemsItemToJson(this);
+
+  final String name;
+
+  @JsonKey(name: 'background_color')
+  final String? backgroundColor;
 }
 
 // remote_config_client.dart
@@ -62,24 +101,36 @@ class RemoteConfigClient {
 
   final FirebaseRemoteConfig _remoteConfig;
 
-  bool getAppNewPurchaseFlow() =>
-      _remoteConfig.getBool('app_new_purchase_flow');
+  int getExampleParam1Int() => _remoteConfig.getInt('example_param_1');
 
-  HomeBannerConfig getAppHomeBannerConfig() {
+  double getExampleParam1Double() =>
+      _remoteConfig.getDouble('example_param_1');
+
+  MenuConfig getExampleParam2() {
     try {
       final decoded = jsonDecode(
-        _remoteConfig.getString('app_home_banner_config'),
+        _remoteConfig.getString('example_param_2'),
       );
       if (decoded is! Map<String, dynamic>) {
         throw const FormatException('Expected a JSON object.');
       }
-      return HomeBannerConfig.fromJson(decoded);
+      return MenuConfig.fromJson(decoded);
     } on Object {
-      return HomeBannerConfig.fromJson(
-        <String, dynamic>{'banners': <dynamic>[]},
+      return MenuConfig.fromJson(
+        <String, dynamic>{
+          'items': <dynamic>[
+            <String, dynamic>{
+              'name': 'coffee',
+              'background_color': '#6750A4',
+            },
+          ],
+        },
       );
     }
   }
+
+  bool getExampleGroupExampleParam3() =>
+      _remoteConfig.getBool('example_param_3');
 }
 ```
 
@@ -88,9 +139,15 @@ getter selection, or JSON parsing directly:
 
 ```dart
 final client = RemoteConfigClient(FirebaseRemoteConfig.instance);
-final bool enabled = client.getAppNewPurchaseFlow();
-final HomeBannerConfig banners = client.getAppHomeBannerConfig();
+final int param1 = client.getExampleParam1Int();
+final MenuConfig param2 = client.getExampleParam2();
+final bool param3 = client.getExampleGroupExampleParam3();
 ```
+
+Parameters under `parameterGroups` remain in the same generated client. Their
+method names use `get<GroupName><ParameterName>`, while Firebase lookups still
+use the original parameter key. Top-level parameters keep their existing
+`get<ParameterName>` methods. A manifest may contain either form or both.
 
 ## Usage
 
@@ -162,10 +219,10 @@ with Firebase: `STRING`, `BOOLEAN`, `NUMBER`, and `JSON`. Within a JSON value
 schema, both optional properties and nullable properties are generated as
 nullable Dart fields (`T?`).
 
-Every `NUMBER` parameter generates two methods:
-`get<Parameter>Int()` and `get<Parameter>Double()`. If a `JSON` parameter
-cannot be parsed or converted into its model, the generated client falls back
-to the Manifest's `defaultValue`.
+Every top-level `NUMBER` parameter generates `get<Parameter>Int()` and
+`get<Parameter>Double()`; grouped numbers include the group prefix in both
+names. If a `JSON` parameter cannot be parsed or converted into its model, the
+generated client falls back to the Manifest's `defaultValue`.
 
 Every generated Dart file starts with
 `// GENERATED CODE - DO NOT MODIFY BY HAND`. Change the Manifest or JSON
@@ -177,22 +234,46 @@ Schema and run the generator again instead of editing generated files.
 {
   "$schema": "./schema/remote_config_manifest.schema.json",
   "parameters": {
-    "app_new_purchase_flow": {
-      "valueType": "BOOLEAN",
-      "defaultValue": false
+    "example_param_1": {
+      "valueType": "NUMBER",
+      "defaultValue": 42
     },
-    "app_home_banner_config": {
+    "example_param_2": {
       "valueType": "JSON",
-      "defaultValue": { "banners": [] },
-      "valueSchema": { "$ref": "#/$defs/HomeBannerConfig" }
+      "defaultValue": {
+        "items": [
+          { "name": "coffee", "background_color": "#6750A4" }
+        ]
+      },
+      "valueSchema": { "$ref": "#/$defs/MenuConfig" }
+    }
+  },
+  "parameterGroups": {
+    "example_group": {
+      "parameters": {
+        "example_param_3": {
+          "valueType": "BOOLEAN",
+          "defaultValue": true
+        }
+      }
     }
   },
   "$defs": {
-    "HomeBannerConfig": {
+    "MenuConfig": {
       "type": "object",
-      "required": ["banners"],
+      "required": ["items"],
       "properties": {
-        "banners": { "type": "array", "items": { "type": "string" } }
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "background_color": { "type": "string" }
+            }
+          }
+        }
       }
     }
   }

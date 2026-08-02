@@ -4,7 +4,6 @@
   "title": "Remote Config Codegen Dart Manifest",
   "description": "A manifest used to generate a typed Dart RemoteConfigClient.",
   "type": "object",
-  "required": ["parameters"],
   "properties": {
     "$schema": {
       "type": "string",
@@ -12,9 +11,18 @@
     },
     "parameters": {
       "type": "object",
-      "minProperties": 1,
       "additionalProperties": {
         "$ref": "#/$defs/remoteConfigParameterDefinition"
+      }
+    },
+    "parameterGroups": {
+      "type": "object",
+      "propertyNames": {
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/remoteConfigParameterGroupDefinition"
       }
     },
     "$defs": {
@@ -24,7 +32,39 @@
     }
   },
   "additionalProperties": false,
+  "anyOf": [
+    {
+      "required": ["parameters"],
+      "properties": {
+        "parameters": { "minProperties": 1 }
+      }
+    },
+    {
+      "required": ["parameterGroups"],
+      "properties": {
+        "parameterGroups": { "minProperties": 1 }
+      }
+    }
+  ],
   "$defs": {
+    "remoteConfigParameterGroupDefinition": {
+      "type": "object",
+      "required": ["parameters"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "parameters": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/remoteConfigParameterDefinition"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "remoteConfigParameterDefinition": {
       "type": "object",
       "required": ["valueType", "defaultValue"],

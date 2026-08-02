@@ -1,7 +1,14 @@
 # Remote Config Codegen Dart example
 
-This Flutter app demonstrates generated `RemoteConfigClient` methods and
-Freezed JSON models on Android, iOS, and Web.
+This Flutter app demonstrates generated `RemoteConfigClient` methods,
+parameter group method prefixes, and Freezed JSON models on Android, iOS, and
+Web.
+
+The example manifest contains three values:
+
+- `example_param_1`: the number `42`
+- `example_param_2`: a JSON object containing a coffee item
+- `example_group.example_param_3`: the boolean `true`
 
 ## Generate the client and models
 

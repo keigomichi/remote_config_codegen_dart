@@ -28,6 +28,124 @@ void main() {
       },
     );
 
+    test('fromJson accepts a manifest containing only parameter groups', () {
+      final manifest = Manifest.fromJson(<String, Object?>{
+        'parameterGroups': <String, Object?>{
+          'Search V2': <String, Object?>{
+            'description': 'New mobile search view',
+            'parameters': <String, Object?>{
+              'search_enabled': <String, Object?>{
+                'valueType': 'BOOLEAN',
+                'defaultValue': false,
+              },
+            },
+          },
+        },
+      });
+
+      expect(manifest.parameters, isEmpty);
+      expect(manifest.parameterGroups, contains('Search V2'));
+      expect(
+        manifest.parameterGroups['Search V2']!.description,
+        'New mobile search view',
+      );
+      expect(
+        manifest
+            .parameterGroups['Search V2']!
+            .parameters['search_enabled']!
+            .defaultValue,
+        isFalse,
+      );
+    });
+
+    test('fromJson rejects duplicate parameter keys across locations', () {
+      expect(
+        () => Manifest.fromJson(<String, Object?>{
+          'parameters': <String, Object?>{
+            'shared_key': <String, Object?>{
+              'valueType': 'STRING',
+              'defaultValue': 'top-level',
+            },
+          },
+          'parameterGroups': <String, Object?>{
+            'Group': <String, Object?>{
+              'parameters': <String, Object?>{
+                'shared_key': <String, Object?>{
+                  'valueType': 'STRING',
+                  'defaultValue': 'grouped',
+                },
+              },
+            },
+          },
+        }),
+        throwsFormatException,
+      );
+    });
+
+    test('fromJson rejects empty and invalid parameter groups', () {
+      expect(
+        () => Manifest.fromJson(<String, Object?>{}),
+        throwsFormatException,
+      );
+      expect(
+        () => Manifest.fromJson(<String, Object?>{
+          'parameterGroups': <String, Object?>{
+            'Empty': <String, Object?>{'parameters': <String, Object?>{}},
+          },
+        }),
+        throwsFormatException,
+      );
+      expect(
+        () => Manifest.fromJson(<String, Object?>{
+          'parameterGroups': <String, Object?>{
+            '日本語': <String, Object?>{
+              'parameters': <String, Object?>{
+                'enabled': <String, Object?>{
+                  'valueType': 'BOOLEAN',
+                  'defaultValue': false,
+                },
+              },
+            },
+          },
+        }),
+        throwsFormatException,
+      );
+    });
+
+    test('fromJson validates parameter group name and description lengths', () {
+      Map<String, Object?> groupedManifest(String name, Object? description) =>
+          <String, Object?>{
+            'parameterGroups': <String, Object?>{
+              name: <String, Object?>{
+                'description': description,
+                'parameters': <String, Object?>{
+                  'enabled': <String, Object?>{
+                    'valueType': 'BOOLEAN',
+                    'defaultValue': false,
+                  },
+                },
+              },
+            },
+          };
+
+      expect(
+        () => Manifest.fromJson(
+          groupedManifest(List<String>.filled(257, 'a').join(), 'description'),
+        ),
+        throwsFormatException,
+      );
+      expect(
+        () => Manifest.fromJson(
+          groupedManifest('Group', List<String>.filled(257, 'a').join()),
+        ),
+        throwsFormatException,
+      );
+      expect(
+        () => Manifest.fromJson(groupedManifest('Group', 42)),
+        throwsFormatException,
+      );
+    });
+
     test(
       'fromJson rejects a boolean parameter whose default value is not boolean',
       () {

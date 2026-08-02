@@ -3,6 +3,17 @@ import 'package:test/test.dart';
 
 void main() {
   group('DartNames', () {
+    group('validate', () {
+      test('accepts names that can be converted to Dart identifiers', () {
+        expect(() => DartNames.validate('Search V2'), returnsNormally);
+      });
+
+      test('rejects names without a valid leading word', () {
+        expect(() => DartNames.validate('日本語'), throwsFormatException);
+        expect(() => DartNames.validate('123 group'), throwsFormatException);
+      });
+    });
+
     group('type', () {
       test('converts separator-delimited input to a type identifier', () {
         expect(DartNames.type('app_home-banner'), 'AppHomeBanner');

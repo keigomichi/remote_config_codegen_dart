@@ -3,6 +3,14 @@
 /// The conversion accepts alphanumeric words separated by punctuation. Invalid
 /// or digit-leading names fail early with [FormatException].
 class DartNames {
+  /// Validates that [input] can be converted into a Dart identifier.
+  ///
+  /// Throws [FormatException] when [input] has no usable words or starts with
+  /// a digit.
+  static void validate(String input) {
+    _words(input);
+  }
+
   /// Converts [input] into a PascalCase Dart type identifier.
   static String type(String input) => _words(input).map(_capitalize).join();
 
